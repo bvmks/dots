@@ -1,0 +1,123 @@
+{
+    "expand-left":true,
+    "layer": "top", // Waybar at top layer
+    "position": "bottom",
+    "height": 10,
+    // "width": ,
+    "spacing": 0,
+    "margin-bottom": 0,
+
+    // "modules-left": ["custom/weather", "custom/cmus", "custom/terminal", "custom/nemo"],
+
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["tray","custom/sep", "hyprland/submap", "hyprland/language","pulseaudio", "clock#time", "clock#date"],
+
+    "custom/weather": {
+	"format": "󰖞 {}",
+	"interval": 30,
+	"exec": "~/.config/hypr/themes/hypr_strws/weather.sh",
+	"tooltip": false
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "custom/cmus": {
+	"format": "{icon} CMUS",
+	"format-icons": {
+	    "default": [""]
+	},
+	"max-length": 15,
+	"interval": 1,
+	"exec": "cmus-remote -C \"format_print '%F'\"",
+	"exec-if": "pgrep cmus",
+	"on-click": "cmus-remote -u",
+	"on-scroll-up": "cmus-remote --next",
+	"on-scroll-down": "cmus-remote --prev",
+	"escape": true,
+	"tooltip": false
+    },
+
+    "custom/terminal": {
+	"format": "",
+	"on-click": "exec kitty",
+	"tooltip": false
+    },
+
+    "custom/sep": {
+	"format": "|",
+	"tooltip": false
+    },
+
+    "custom/nemo": {
+	"format": "󰉋",
+	"on-click": "exec nemo",
+	"tooltip": false
+    },
+
+
+    "hyprland/workspaces": {
+        "all-outputs": false,
+	"disable-empty": false,
+	"format": "{icon}",
+	"format-empty": "{icon}",
+	"on-click": "activate",
+	"format-icons": {
+	    "1": "▇▇▇▇",
+	    "2": "▇▇▇▇",
+	    "3": "▇▇▇▇",
+	    "4": "▇▇▇▇",
+	    "5": "▇▇▇▇",
+	    "6": "▇▇▇▇",
+	    "7": "▇▇▇▇",
+	    "8": "▇▇▇▇",
+	    "9": "▇▇▇▇",
+	    "10":"▇▇▇▇"
+	},
+	"tooltip": false,
+
+	"persistent-workspaces": {
+	    "DP-1": [1,2,3,4,5],
+	    "HDMI-A-1": [6,7,8,9,10]
+	}
+    },
+
+    "tray": {
+	"format": " {} |",
+	"icon-size": 14,
+	"spacing": 15
+    },
+
+    "pulseaudio": {
+	"scroll-step": 5,
+	"format": "| {icon}{volume}% ",
+	"format-icons": {
+	    "default": [" ", " ", " "],
+	},
+	"on-click": "pavucontrol"
+    },
+
+    "hyprland/language": {
+	"format": " {} ",
+	"format-en": "EN",
+	"format-ru": "RU",
+    },
+
+    "clock#time": {
+	"tooltip":false,
+	"format": "| {:%H:%M} ",
+	"format-alt": "| {:%H:%M:%S} ",
+	"interval":1
+    },
+
+    "clock#date": {
+	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"format": "| {:%d %b %Y} |",
+	"format-alt": "{| :%d.%m.%Y} |" 
+    },
+
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+}
+}

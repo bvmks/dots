@@ -1,0 +1,103 @@
+* {
+    font-family: PTMono, SymbolsNerdFont;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 1px;
+}
+
+#waybar {
+    padding: 3px 0;
+    border-radius: 0;
+    background-color: @bg;
+    /* border-radius: 5; */
+}
+
+@define-color bg #000000;
+@define-color fg #dedede;
+@define-color black #000000;
+@define-color green #2BE491;
+@define-color gr #cc3500;
+@define-color dark_gray #404040;
+@define-color accent #cc3500;
+
+#custom-cmus {
+    background: @black;
+    color: @green;
+    padding: 0;
+    margin: 4px 0px 4px 700px;
+    border-radius: 0;
+}
+
+#custom-terminal {
+    background: @black;
+    color: @fg;
+    padding: 0 5px 0 25px;
+    margin: 4px 0 4px 0;
+}
+
+#custom-nemo {
+    background: @black;
+    color: @fg;
+    padding: 0 5px 0 10px;
+    margin: 4px 0 4px 0;
+}
+
+
+#workspaces {
+    padding: 4px 0px 4px 0px;
+    background-color: @black;
+}
+#workspaces button {
+    border-radius: 0px;
+    color: @accent;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 0px 2px 0px;
+}
+#workspaces button:hover {
+    font-size: 20px;
+    color: @fg;
+}
+#workspaces button.active {
+    color: @fg;
+}
+#workspaces button.empty {
+    color: @dark_gray;
+}
+#workspaces button.empty.active{
+    color: @fg;             /* текст белый */
+}
+
+#tray {
+    background: @black;
+    color: @fg;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 9px 0px 0px;
+}
+#pulseaudio{
+
+    background: @black;
+    color: @fg;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+#language {
+    background: @black;
+    color: @accent;
+    padding: 0;
+    margin: 0px 0 0px 0;
+    border-radius: 0;
+}
+
+#clock {
+    background: @black;
+    color: @fg;
+    padding: 0px 0px 0 0px;
+    margin: 0px 0px 0px 0px;
+}
+#clock#date {
+    background: @black;
+    color: @fg;
+    padding: 0 0px 0 0px;
+    margin: 0px 10px 0px 0px;
+}
