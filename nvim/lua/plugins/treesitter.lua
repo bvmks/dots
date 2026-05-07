@@ -9,6 +9,7 @@ return {
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {
+        'nasm',
         'java',
         'json',
         'regex',
@@ -35,7 +36,7 @@ return {
       highlight = {
         enable = true,
         disable = function(lang, buf)
-          local allowed = { 'java', 'lua', 'c', 'cpp', 'jish' }
+          local allowed = { 'java', 'lua', 'c', 'cpp', 'nasm', 'jish' }
           for _, l in ipairs(allowed) do
             if l == lang then
               return false

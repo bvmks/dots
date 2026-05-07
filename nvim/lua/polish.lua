@@ -6,8 +6,8 @@ vim.cmd 'hi clear NeoTreeDimText'
 
 -- Treesitter / Syntax
 setcol(0, 'SpecialChar', { fg = '#fa6952', ctermfg = 236 })
-setcol(0, '@comment', { fg = p.gray, ctermfg = 236 })
-setcol(0, 'Comment', { fg = p.dark_gray, ctermfg = 236 })
+setcol(0, '@comment', { fg = '#909090', ctermfg = 236 })
+setcol(0, 'Comment', {link = '@comment',})
 setcol(0, '@property', { fg = '#cc5e5e', ctermfg = 167 })
 setcol(0, '@keyword.import.c', { fg = '#505050', ctermfg = 240, bold = false })
 

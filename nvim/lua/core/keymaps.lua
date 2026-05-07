@@ -1,13 +1,18 @@
 local bind = vim.keymap.set
 
 bind({ 'i', 'v' }, '<A-i>', '<Esc>')
-bind({ 'i', 'v' }, '<A-a>', '<Esc>')
 
 -- bind('i', '<C-h>', '<Left>')
 -- bind('i', '<C-j>', '<Down>')
 -- bind('i', '<C-k>', '<Up>')
 -- bind('i', '<C-l>', '<Right>')
 
+vim.api.nvim_set_keymap(
+  'i',
+  '<A-Space>',
+  string.rep(' ', vim.opt.shiftwidth:get()),
+  { noremap = true, silent = true, expr = false }
+)
 
 
 bind('n', '<A-0>', '^')
@@ -51,6 +56,8 @@ bind('v', '>', '>gv')
 
 bind('n', '=ap', "ma=ap'a")
 
+
+
 -- bind('n', '<Down>', ':resize -2<CR>')
 -- bind('n', '<Up>', ':resize +2<CR>')
 -- bind('n', '<Right>', ':vertical resize -2<CR>')
@@ -61,7 +68,9 @@ bind('n', '<Leader>o', '<Cmd>Neotree focus<CR>')
 
 -- bind('n', '<F5>', '<Cmd>set list!<CR>')
 
-bind('n', '<leader>tlw', '<cmd>set wrap!<CR>')
+bind('n', '<leader>]', '<cmd>set list!<CR>')
+
+bind('n', '<leader>tw', '<cmd>set wrap!<CR>')
 
 bind('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 bind('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

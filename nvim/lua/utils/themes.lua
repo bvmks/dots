@@ -1,5 +1,11 @@
 -- if true then return {} end
 return {
+	{
+		"wnkz/monoglow.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
   {
     'tomasiser/vim-code-dark',
     lazy=false,

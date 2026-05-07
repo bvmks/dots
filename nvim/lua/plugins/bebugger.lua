@@ -14,18 +14,17 @@ return {
     require('mason-nvim-dap').setup {
       automatic_setup = true,
       automatic_installation = true,
-      ensure_installed = {
-        'codelldb', 
-      },
+      ensure_installed = { 'codelldb' },
       handlers = {},
     }
 
+    -- Define signs
     vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapBreakpointCondition', { text = '●', texthl = 'DapBreakpointCondition',  linehl = '', numhl = '' })
-    vim.fn.sign_define('DapBreakpointRejected',  { text = '●', texthl = 'DapBreakpointRejected',  linehl = '', numhl = '' })
-    vim.fn.sign_define('DapStopped', { text = '▶', texthl = 'DapStopped',    linehl = 'Visual', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '●', texthl = 'DapBreakpointCondition', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '●', texthl = 'DapBreakpointRejected', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '▶', texthl = 'DapStopped', linehl = 'Visual', numhl = '' })
 
-    -- keymaps
+    -- Keymaps
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<F6>', dap.stop, { desc = 'Debug: Stop' })
     vim.keymap.set('n', '<F7>', dap.clear_breakpoints, { desc = 'Debug: Clear breakpoints' })
@@ -58,11 +57,11 @@ return {
       },
     }
 
-
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- Adapter
     dap.adapters.codelldb = {
       type = 'server',
       port = "${port}",
@@ -72,41 +71,37 @@ return {
       }
     }
 
-    dap.configurations.cpp = {
-      {
-        name = "Launch file",
-        type = "codelldb",
-        request = "launch",
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
+    -- Helper function: ask executable + args every time
+    local function ask_prog_args()
+      local exe = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      local args_str = vim.fn.input('Program arguments: ')
+      local args = vim.split(args_str, "%s+", { trimempty = true })
+      return exe, args
+    end
 
-        program = function()
-          if not vim.g._dap_last_exe then
-            local exe = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            local args_str = vim.fn.input('Program arguments: ')
-            local args = vim.split(args_str, "%s+", { trimempty = true })
+    -- Configurations for C, C++ and ASM
+    local languages = { 'cpp', 'c', 'asm' }
+    for _, lang in ipairs(languages) do
+      dap.configurations[lang] = {
+        {
+          name = "Launch file",
+          type = "codelldb",
+          request = "launch",
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
 
+          program = function()
+            local exe, args = ask_prog_args()
             vim.g._dap_last_exe = exe
             vim.g._dap_last_args = args
-          end
-          return vim.g._dap_last_exe
-        end,
+            return exe
+          end,
 
-        args = function()
-          if not vim.g._dap_last_args then
-            -- на случай, если args вызвался первым
-            local exe = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            local args_str = vim.fn.input('Program arguments: ')
-            local args = vim.split(args_str, "%s+", { trimempty = true })
-
-            vim.g._dap_last_exe = exe
-            vim.g._dap_last_args = args
-          end
-          return vim.g._dap_last_args
-        end,
-      },
-    }
-
-    dap.configurations.c = dap.configurations.cpp
+          args = function()
+            return vim.g._dap_last_args or {}
+          end,
+        },
+      }
+    end
   end,
 }

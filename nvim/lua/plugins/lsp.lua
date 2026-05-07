@@ -192,12 +192,18 @@ return {
       --     },
       --   },
       -- },
-      ruff = {},
-      jdtls = {},
-      jsonls = {},
-      sqlls = {},
-      yamlls = {},
-      bashls = {},
+      -- ruff = {},
+      -- jdtls = {},
+      -- jsonls = {},
+      -- sqlls = {},
+      -- yamlls = {},
+      bashls = {
+		filetypes = { "sh", "bash", "zsh", "fish"  },  -- Поддержка расширений
+		root_dir = function(fname)
+			return vim.loop.cwd()
+			end,
+			on_attach = function(client, bufnr) end,
+      },
       clangd = {
         cmd = {
           "clangd",
@@ -208,17 +214,22 @@ return {
           "--clang-tidy",
           "--header-insertion=never",
         },
-        filetypes = { "c", "cpp", "objc", "objcpp" },
+        filetypes = { "c", "cpp"},
       },
-      dockerls = {},
+      -- dockerls = {},
       fish_lsp = {},
-      docker_compose_language_service = {},
+      -- asm_lsp = {
+      --   cmd = { "asm-lsp" },
+      --   filetypes = { "asm", "nasm" },
+      -- },
+      csharp_ls = {},
+      -- docker_compose_language_service = {},
       -- tailwindcss = {},
       -- graphql = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
-      cssls = {},
-      -- ltex = {},
-      -- texlab = {},
+      -- cssls = {},
+      ltex = {},
+      texlab = {},
     }
 
     -- Ensure the servers and tools above are installed

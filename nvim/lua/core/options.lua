@@ -53,12 +53,12 @@ vim.opt.conceallevel = 0
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 
+vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.softtabstop = -1
 
-vim.opt.autoindent = true
-vim.opt.softtabstop = 4
+vim.opt.autoindent = false
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
