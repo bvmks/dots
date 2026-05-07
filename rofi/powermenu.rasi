@@ -1,0 +1,63 @@
+
+configuration {
+    drun-display-format: "{name}";
+    modi: "drun";
+    kb-row-up: "Alt+k,Up,k";
+    kb-row-down: "Alt+j,Down,j";
+    font: "Iosevka Term Extended 12";
+    scroll-method: 0;
+
+	location: 6;
+}
+
+
+* {
+    bg:      #000000;
+    fg:      #c8c5c6; /* Серый */
+    accent:  #c43400; /* Красный */
+
+    background-color: transparent;
+    foreground-color: transparent;
+    text-color:       @fg;
+    margin:           0;
+    padding:          0;
+}
+
+window {
+    width:            100%;
+    background-color: @bg;
+}
+
+mainbox {
+
+    children:         [ listview ];
+}
+
+listview {
+    orientation:      horizontal;
+    // fixed-height:     true;
+    dynamic:          true;
+}
+
+element {
+    padding:          10px;
+    background-color: @bg; 
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:       @bg; /* Текст станет черным на красном фоне для контраста */
+}
+
+/*
+element selected {
+    background-color: @bg;
+    text-color:       @accent;
+}
+*/

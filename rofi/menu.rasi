@@ -1,0 +1,119 @@
+configuration {
+	display-drun: ">";
+	display-clipboard: "";
+	drun-display-format: "{name}";
+	modi: "drun";
+}
+
+@import "~/.config/i3/themes/i3_one/rofi/colors.rasi"
+
+* {
+	font: "Iosevka Term Extended 10";
+	background-color: @bg;
+	separatorcolor: transparent;
+
+	border: 0;
+	margin: 0;
+	padding: 0;
+	spacing: 0;	
+}
+
+window {
+	width: 700px;
+	height: 500px;
+	border-radius: 0;
+	border: 0;
+	padding: 10;
+	background-color: @bg;
+	x-offset:   0px;        
+	y-offset:   0px;
+}
+
+mainbox {
+	background-color: @bg;
+	children: [inputbar,listview];
+	padding: 0;
+}
+
+listview {
+	scrollbar: false;
+	padding: 2 0;
+	background-color: @bg;
+	columns: 2;
+	lines: 7;
+	margin: 8 0 0 0;
+}
+
+
+inputbar {
+	children: [ entry];
+	background-color: #202020;
+	margin: 10 0 10 0;
+}
+
+entry {
+	background-color: transparent;
+	text-color: @fg;
+	placeholder-color: @fg;
+	border-radius: 0;
+	placeholder: "";
+	blink: false;
+	padding: 4;
+}
+
+element {
+	background-color: rgba(0,0,0,0);
+	padding: 10;
+	border-radius: 10;
+}
+
+element-text {
+	background-color: inherit;
+	text-color: inherit;
+	expand: true;
+	horizontal-align: 0;
+	vertical-align: 0.5;
+}
+
+element-icon {
+	background-color: inherit;
+	text-color: @fg;
+	padding: 0 10 0 0;
+}
+
+element.normal.normal {
+	background-color: @bg;
+	text-color: @fg;
+}
+element.normal.urgent {
+	background-color: @bg;
+	text-color: @fg;
+}
+element.normal.active {
+	background-color: @bg;
+	text-color: @fg;
+}
+element.selected.normal {
+	background-color: @black;
+	text-color: @fg;
+}
+element.selected.urgent {
+	background-color: @black;
+	text-color: @fg;
+}
+element.selected.active {
+	background-color: @black;
+	text-color: @fg;
+}
+element.alternate.normal {
+	background-color: @bg;
+	text-color: @fg;
+}
+element.alternate.urgent {
+	background-color: @bg;
+	text-color: @fg;
+}
+element.alternate.active {
+	background-color: @bg;
+	text-color: @fg;
+}
