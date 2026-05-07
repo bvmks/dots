@@ -1,24 +1,17 @@
-if test -z "$DISPLAY" -a (tty) = "/dev/tty1"
-    exec Hyprland
-end
-
 if status is-interactive
-    fish_vi_key_bindings
     # Commands to run in interactive sessions can go here
-    export VISUAL="nvim"
 
     alias ..='cd ..'
     alias ...='cd ../..'
     alias .3='cd ../../..'
     alias .4='cd ../../../..'
     alias .5='cd ../../../../..'
-    alias :q="exit"  
 
     # set -g fish_sequence_key_delay_ms 300 
 
     function yank-to-clipboard
         set text (commandline -k) 
-        echo -n $text | wl-copy
+        echo -n $text | xclip -selection clipboard
     end
 
     function yank-line-to-clipboard
@@ -26,7 +19,7 @@ if status is-interactive
         set -l cur (commandline -L)
         set -l lines (string split0 \n -- $all)
         set -l line $lines[$cur]
-        echo -n $line | wl-copy
+        echo -n $line | xclip -selection clipboard
     end
 
     #binds
@@ -72,7 +65,8 @@ if status is-interactive
 
     bind ctrl-alt-h backward-word
     bind ctrl-alt-l forward-word
-    bind ctrl-x 'commandline | wl-copy; commandline -f clear-commandline' 
+    bind ctrl-x 'commandline | xclip -selection clipboard; commandline -f clear-commandline' 
+    bind -M insert ctrl-x 'commandline | xclip -selection clipboard; commandline -f clear-commandline' 
 
     # bind space,d,d kill-whole-line and yank-to-clipboard
     #
@@ -113,8 +107,8 @@ if status is-interactive
 
     bind alt-k up-or-search
     bind alt-j down-or-search
-    bind -M insert alt-k down-or-search
-    bind -M insert alt-j up-or-search
+    bind -M insert alt-j down-or-search
+    bind -M insert alt-k up-or-search
 
     # bind space,g 'commandline -a " | grep";' 
     # bind -M input space,g 'commandline -a " | grep"' 
