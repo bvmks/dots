@@ -53,7 +53,7 @@ return {
           init_selection = '<Leader>i',
           node_incremental = '<Leader>i',
           scope_incremental = '<Leader>s',
-          node_decremental = '<Leader>d',
+          node_decremental = '<Leader>I',
         },
       },
       textobjects = {

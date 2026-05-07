@@ -94,10 +94,67 @@ return {
     --   padding = { left = 0, right = 1 }, -- We don't need space before this
     -- }
 
+    
     ins_left {
       -- mode component
       function()
-        return ' ▊'
+        return " "
+      end,
+      color = function()
+        local mode_color = {
+          n = p.acent,
+          i = colors.green,
+          v = colors.blue,
+          [''] = colors.blue,
+          V = colors.blue,
+          c = colors.magenta,
+          no = p.acent,
+          s = colors.orange,
+          S = colors.orange,
+          [''] = colors.orange,
+          ic = colors.yellow,
+          R = colors.violet,
+          Rv = colors.violet,
+          cv = p.acent,
+          ce = p.acent,
+          r = colors.cyan,
+          rm = colors.cyan,
+          ['r?'] = colors.cyan,
+          ['!'] = p.acent,
+          t = p.acent,
+        }
+        return { bg = mode_color[vim.fn.mode()] }
+      end,
+      padding = { left = 0, right = 0 },
+    }
+
+    ins_left {
+      -- mode component
+      function()
+        local modes = icons.mode
+        local mode_icon = {
+          n = modes.n,
+          i = modes.i,
+          v = modes.v,
+          [''] = modes.v,
+          V = modes.v,
+          c = modes.c,
+          no = modes.n,
+          s = modes.s,
+          S = modes.s,
+          [''] = modes.s,
+          ic = modes.u,
+          R = modes.r,
+          Rv = modes.r,
+          cv = modes.c,
+          ce = modes.c,
+          r = modes.r,
+          rm = modes.r,
+          ['r?'] = modes.r,
+          ['!'] = modes.u,
+          t = modes.u,
+        }
+        return mode_icon[vim.fn.mode()]
       end,
       color = function()
         -- auto change color according to neovims mode
@@ -125,7 +182,7 @@ return {
         }
         return { fg = mode_color[vim.fn.mode()] }
       end,
-      padding = { right = 1 },
+      padding = { left = 1, right = 1 },
     }
 
 

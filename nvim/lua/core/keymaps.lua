@@ -117,9 +117,9 @@ vim.keymap.set('n', '<leader>td', function()
   diagnostics_active = not diagnostics_active
 
   if diagnostics_active then
-    vim.diagnostic.enable(0)
+    vim.diagnostic.enable(true)
   else
-    vim.diagnostic.disable(0)
+    vim.diagnostic.enable(false)
   end
 end)
 
@@ -136,7 +136,7 @@ bind('n', ']d', function()
   vim.diagnostic.jump { count = 1, float = true }
 end, { desc = 'Go to next diagnostic message' })
 
-bind('n', '<Leader>d', vim.diagnostic.open_float, { desc = 'Open floating [D]iagnostic message' })
+bind('n', '<Leader>k', vim.diagnostic.open_float, { desc = 'Open floating [D]iagnostic message' })
 bind('n', '<Leader>l', vim.diagnostic.setloclist, { desc = '[T]oggle [D]iagnostics [L]ist' })
 
 -- Save and load session
