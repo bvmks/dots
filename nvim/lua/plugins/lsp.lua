@@ -194,11 +194,11 @@ return {
       -- sqlls = {},
       -- yamlls = {},
       bashls = {
-		filetypes = { "sh", "bash", "zsh", "fish"  },  -- Поддержка расширений
-		root_dir = function(fname)
-			return vim.loop.cwd()
-			end,
-			on_attach = function(client, bufnr) end,
+        filetypes = { "sh", "bash", "zsh", "fish"  },  -- Поддержка расширений
+        root_dir = function(fname)
+            return vim.loop.cwd()
+            end,
+            on_attach = function(client, bufnr) end,
       },
       clangd = {
         cmd = {

@@ -7,13 +7,11 @@ bind({ 'i', 'v' }, '<A-i>', '<Esc>')
 -- bind('i', '<C-k>', '<Up>')
 -- bind('i', '<C-l>', '<Right>')
 
-vim.api.nvim_set_keymap(
-  'i',
-  '<A-Space>',
-  string.rep(' ', vim.opt.shiftwidth:get()),
-  { noremap = true, silent = true, expr = false }
-)
+vim.keymap.set('i', '<C-Space>', function()
+  return string.rep(' ', vim.bo.tabstop)
+end, { expr = true, desc = 'put tabstop spaces' })
 
+vim.keymap.set('i', '<Tab>', '<C-v><Tab>', { noremap = true, silent = true })
 
 bind('n', '<A-0>', '^')
 -- bind('n', '-', '$')
